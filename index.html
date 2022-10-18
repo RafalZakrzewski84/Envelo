@@ -9,28 +9,29 @@
 </head>
 <body>
     <div id="app">
-        <div id="header">
-          <h1>Postacie</h1>
-        </div>
+      <div id="header">
+        <h1>Postacie</h1>
         <p>wybierz postać by zobaczyć jej szczegóły</p>
         <p class="search">
-          strona <input type="number" /> z <span></span></p>
+          Strona <input id="search-input" type="number" /> z <span id="search-span"></span></p>
           <button id="all">Wszystkie</button>
           <button id="alive">Tylko żyjące</button>
           <button id="dead">Tylko martwe</button>
         </p>
+      </div>
       
         <div class="main">
-          <section>
+          <section id="main-chracters-list" class="main-chracters-list">
+            <h2>Character List:</h2>
             <!-- tutaj wyświetli się lista -->
           </section>
-          <section>
-            <h1>Szczegóły</h1>
+          <section id="main-chracters-details" class="main-chracters-details">
+            <h2>Szczegóły</h2>
             <!-- tutaj wyświetlą się szczegóły wybranej postaci -->
           </section>
         </div>
       </div>
-      <script src="./index.js"></script>
+      <script src="./index.js" type="module"></script>
       
 </body>
 </html>
