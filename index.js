@@ -1,5 +1,6 @@
 /** @format */
 import { apiurl } from './src/constants.js';
+import getCharacters from './src/getCharacters.js';
 
 /*
 Aplikacja ma za zadanie wyświetlić postacie z serialu Rick i Morty, pobrane z dedykowanego
@@ -27,19 +28,11 @@ document.title = 'prework';
 
 const characters = document.querySelector('section');
 
-async function getCharacters() {
-	const response = await fetch(apiurl, {
-		method: 'GET',
-	});
-	const data = await response.json();
-	var loading = false;
-	console.log('getCharacters', data);
-	return await data;
-}
+//getCharacters function to separet file it contain unessesary variable loading
 
 (async () => {
 	var loading = true;
-	let { results, info } = await getCharacters();
+	let { results, info } = await getCharacters(apiurl);
 
 	document.querySelector('#search-input').value = 1;
 	document.querySelector('#search-span').innerText = info.pages;
@@ -53,8 +46,9 @@ async function getCharacters() {
 					return res.json();
 				})
 				.then((res) => {
-					console.log(res);
+					console.log('res', res);
 					results = res.results;
+					console.log(results);
 				});
 		});
 
@@ -95,7 +89,7 @@ async function getCharacters() {
 		const p = document.createElement('p');
 		const lp = document.createElement('span');
 
-		lp.innerText = index + 1;
+		lp.innerText = `${+index + 1}`;
 		const text = document.createTextNode(' ' + results[index].name);
 		p.prepend(lp, text);
 
