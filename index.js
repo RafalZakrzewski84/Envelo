@@ -32,47 +32,41 @@ const characters = document.querySelector('section');
 
 (async () => {
 	var loading = true;
-	let { results, info } = await getCharacters(apiurl);
+	let data = await getCharacters(apiurl);
+	console.log(data.results);
 
 	document.querySelector('#search-input').value = 1;
-	document.querySelector('#search-span').innerText = info.pages;
+	document.querySelector('#search-span').innerText = data.info.pages;
 
 	document
 		.querySelector('#search-input')
 		//was ()=>{} should be common fnc to use this
-		.addEventListener('change', function (evt) {
-			fetch(apiurl + '?page=' + this.value)
-				.then(function (res) {
-					return res.json();
-				})
-				.then((res) => {
-					console.log('res', res);
-					results = res.results;
-					console.log(results);
-				});
+		.addEventListener('change', async function () {
+			data = await getCharacters(apiurl, this.value);
+			console.log(data.results);
 		});
 
 	function getOnlyAlives() {
 		characters.innerHTML = '';
 
-		results.forEach((res, index) => {
+		data.results.forEach((res, index) => {
 			if (res.status === 'Alive') {
-				results.splice(index, 1);
+				data.results.splice(index, 1);
 			}
 		});
-
+		console.log(data.results);
 		//todo render filtered results!
 	}
 
 	function deadsOnly() {
 		characters.innerHTML = '';
 
-		results.forEach((res, index) => {
+		data.results.forEach((res, index) => {
 			if (res.status === 'Dead') {
-				results.splice(index, 1);
+				data.results.splice(index, 1);
 			}
 		});
-
+		console.log(data.results);
 		//todo render filtered results!
 	}
 
@@ -85,28 +79,28 @@ const characters = document.querySelector('section');
 	all.addEventListener('click', all2);
 
 	// adding results to DOM!
-	for (let index in results) {
+	for (let index in data.results) {
 		const p = document.createElement('p');
 		const lp = document.createElement('span');
 
 		lp.innerText = `${+index + 1}`;
-		const text = document.createTextNode(' ' + results[index].name);
+		const text = document.createTextNode(' ' + data.results[index].name);
 		p.prepend(lp, text);
 
 		characters.append(p);
 
 		p.addEventListener('click', () => {
-			results[index];
+			data.results[index];
 			const n = document.createElement('div');
 			const gender = document.createElement('div');
 			const status = document.createElement('div');
 			const jpg = document.createElement('img');
 			jpg.width = '100';
 
-			n.innerText = 'imie: ' + results[index].name;
-			gender.innerText = 'płeć: ' + results[index].gender;
-			status.innerText = 'status: ' + results[index].status;
-			jpg.src = results[index].image;
+			n.innerText = 'imie: ' + data.results[index].name;
+			gender.innerText = 'płeć: ' + data.results[index].gender;
+			status.innerText = 'status: ' + data.results[index].status;
+			jpg.src = data.results[index].image;
 
 			const details = document.querySelector('section:not(:first-child)');
 
