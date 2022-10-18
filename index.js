@@ -24,9 +24,10 @@ Rozwiązanie prześlij wykorzystując również platformę Stackblitz, link do T
 rozwiązania w zupełności wystarczy!
 */
 
+//move it to index.html to title tag
 document.title = 'prework';
 
-const characters = document.querySelector('section');
+const characters = document.querySelector('#main-chracters-list');
 
 //getCharacters function to separet file it contain unessesary variable loading
 
@@ -35,16 +36,14 @@ const characters = document.querySelector('section');
 	let data = await getCharacters(apiurl);
 	console.log(data.results);
 
-	document.querySelector('#search-input').value = 1;
-	document.querySelector('#search-span').innerText = data.info.pages;
+	const searchInput = document.querySelector('#search-input');
+	document.querySelector('#search-input-span').innerText = data.info.pages;
 
-	document
-		.querySelector('#search-input')
-		//was ()=>{} should be common fnc to use this
-		.addEventListener('change', async function () {
-			data = await getCharacters(apiurl, this.value);
-			console.log(data.results);
-		});
+	//was ()=>{} should be common fnc to use this
+	searchInput.addEventListener('change', async function () {
+		data = await getCharacters(apiurl, this.value);
+		console.log(data.results);
+	});
 
 	function getOnlyAlives() {
 		characters.innerHTML = '';
