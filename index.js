@@ -1,6 +1,5 @@
 /** @format */
-
-const apiurl = 'https://rickandmortyapi.com/api/character';
+import { apiurl } from './src/constants.js';
 
 /*
 Aplikacja ma za zadanie wyświetlić postacie z serialu Rick i Morty, pobrane z dedykowanego
@@ -32,29 +31,32 @@ async function getCharacters() {
 	const response = await fetch(apiurl, {
 		method: 'GET',
 	});
-
+	const data = await response.json();
 	var loading = false;
-
-	return await response.json();
+	console.log('getCharacters', data);
+	return await data;
 }
 
 (async () => {
 	var loading = true;
 	let { results, info } = await getCharacters();
 
-	document.querySelector('.search > input').value = 1;
-	document.querySelector('.search > span').innerText = info.pages;
+	document.querySelector('#search-input').value = 1;
+	document.querySelector('#search-span').innerText = info.pages;
 
-	document.querySelector('.search > input').addEventListener('change', () => {
-		fetch(apiurl + '?page=' + this.value)
-			.then(function (res) {
-				return res.json();
-			})
-			.then((res) => {
-				console.log(res);
-				results = res.results;
-			});
-	});
+	document
+		.querySelector('#search-input')
+		//was ()=>{} should be common fnc to use this
+		.addEventListener('change', function (evt) {
+			fetch(apiurl + '?page=' + this.value)
+				.then(function (res) {
+					return res.json();
+				})
+				.then((res) => {
+					console.log(res);
+					results = res.results;
+				});
+		});
 
 	function getOnlyAlives() {
 		characters.innerHTML = '';
