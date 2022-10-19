@@ -7,8 +7,7 @@ import createImgElement from './helpers/createImgElement.js';
 import renderDialog from './renderDialog.js';
 
 export default function (index, renderData, mainCharactersDetailsContainer) {
-	// remove renderData[index];
-	const detailContainer = createHtmlElement('div');
+	// removed renderData[index];
 	const detailItem = createHtmlElement('div');
 	const name = createHtmlElement('p', `IMIĘ: ${renderData[index].name}`);
 	const gender = createHtmlElement('p', `PŁEĆ: ${renderData[index].gender}`);
@@ -19,14 +18,15 @@ export default function (index, renderData, mainCharactersDetailsContainer) {
 		renderData[index].name
 	);
 
-	detailContainer.classList.add('main-characters-details-container');
+	//adding class to character item
 	detailItem.classList.add('main-characters-details-item');
 
+	//add character to DOM
 	detailItem.append(name, gender, status, image);
-	detailContainer.append(detailItem);
-	mainCharactersDetailsContainer.append(detailContainer);
+	mainCharactersDetailsContainer.append(detailItem);
 
 	image.addEventListener('click', function () {
+		//on click render dialog window with character image
 		renderDialog(index, renderData);
 	});
 }

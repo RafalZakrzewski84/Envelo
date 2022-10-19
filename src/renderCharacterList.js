@@ -12,7 +12,9 @@ export default function (
 	mainCharactersDetailsContainer,
 	msg
 ) {
+	//adding title nad info to DOM
 	renderCharacterListInfo(mainCharactersList, msg);
+
 	for (let index in renderData) {
 		//creating elements
 		//fixing index + 1 was string instead of number
@@ -28,6 +30,7 @@ export default function (
 		mainCharactersList.append(character);
 
 		character.addEventListener('click', function () {
+			//on click render character detail item
 			renderCharacterDetail(index, renderData, mainCharactersDetailsContainer);
 		});
 	}

@@ -5,13 +5,17 @@ import showCharacters from './src/helpers/showCharacters.js';
 
 //My comments and fixed bugs:
 //- I added some styles in CSS
-//- In index.html I changed structure, added some classes and ids. I added container for detail items.
+//- In index.html I changed structure, added some classes and ids. I added container for character detail items.
 //- document.title = 'prework' moved to index.html to title tag.
-//- I moved variables taken fom DOM to the beginning of file, and got them by id.
+//- I moved variables taken fom DOM to the beginning of file, and get them by id.
 //- I moved getCharacters function to separate file and used it in 2 places.
-//- In getCharacters function I added tryChatch block for error handling
-//- Unnecessary variable loading - removed
-//- In event listener was ()=>{} changed to function(){} for using this
+//- In getCharacters function I added try catch block for error handling
+//- Unnecessary variables loading - removed
+//- In inputs event listener was ()=>{} changed to function(){} for using this
+//- showCharacters functions are rendering elements base on search conditions
+//- I create HTML elements using functions createHtmlElement and createImgElement
+//- I fixed Lp value in list index + 1 was string instead of number
+//- I removed  stand alone renderData[index], unnecessary in code;
 
 const searchInput = document.getElementById('search-input');
 const searchInputSpan = document.getElementById('search-input-span');
