@@ -3,8 +3,14 @@
 export default function (
 	renderData,
 	mainCharactersList,
-	mainCharactersDetails
+	mainCharactersDetails,
+	msg = 'wszystkich'
 ) {
+	console.log('msg in render', msg);
+	const h2 = document.createElement('h2');
+	h2.innerText = `Lista ${msg} postaci:`;
+	mainCharactersList.append(h2);
+
 	for (let index in renderData) {
 		const p = document.createElement('p');
 		const lp = document.createElement('span');

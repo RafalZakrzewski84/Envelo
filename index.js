@@ -1,9 +1,7 @@
 /** @format */
 import { apiurl } from './src/helpers/constants.js';
 import getCharacters from './src/helpers/getCharacters.js';
-import clearCharacterList from './src/helpers/clearCharacterList.js';
-
-import renderCharacterList from './src/renderCharacterList.js';
+import showCharacters from './src/helpers/showCharacters.js';
 
 /*
 Aplikacja ma za zadanie wyświetlić postacie z serialu Rick i Morty, pobrane z dedykowanego
@@ -45,44 +43,55 @@ const headerDeadBtn = document.getElementById('headerDeadBtn');
 (async () => {
 	//unnessesary variable loading - removed
 	let data = await getCharacters(apiurl);
-	console.log(data.results);
 
+	//first rendering
+	showCharacters(
+		data.results,
+		mainCharactersList,
+		mainCharactersDetails,
+		'All'
+	);
+	//adding info about max posible page
 	searchInputSpan.innerText = data.info.pages;
 
 	//was ()=>{} should be common fnc to use this
 	searchInput.addEventListener('change', async function () {
 		data = await getCharacters(apiurl, this.value);
-		console.log(data.results);
-	});
-
-	function showAliveCharacters() {
-		clearCharacterList(mainCharactersList);
-		//I used filter method
-		const aliveList = data.results.filter((res) => res.status === 'Alive');
-		renderCharacterList(aliveList, mainCharactersList, mainCharactersDetails);
-	}
-
-	function showDeadCharacters() {
-		clearCharacterList(mainCharactersList);
-		//I used filter method
-		const deadList = data.results.filter((res) => res.status === 'Dead');
-		renderCharacterList(deadList, mainCharactersList, mainCharactersDetails);
-	}
-
-	function showAllCharacters() {
-		clearCharacterList(mainCharactersList);
-		renderCharacterList(
+		//render character list when input change
+		showCharacters(
 			data.results,
 			mainCharactersList,
-			mainCharactersDetails
+			mainCharactersDetails,
+			'All'
 		);
-	}
+	});
 
 	//wrong functions were assign to event listeners
-	headerDeadBtn.addEventListener('click', showDeadCharacters);
-	headerAliveBtn.addEventListener('click', showAliveCharacters);
-	headerAllBtn.addEventListener('click', showAllCharacters);
-
-	// adding results to DOM!
-	renderCharacterList(data.results, mainCharactersList, mainCharactersDetails);
+	//showing only dead charctrs
+	headerDeadBtn.addEventListener('click', function () {
+		showCharacters(
+			data.results,
+			mainCharactersList,
+			mainCharactersDetails,
+			'Dead'
+		);
+	});
+	//showing only alive charctrs
+	headerAliveBtn.addEventListener('click', function () {
+		showCharacters(
+			data.results,
+			mainCharactersList,
+			mainCharactersDetails,
+			'Alive'
+		);
+	});
+	//showing all charctrs
+	headerAllBtn.addEventListener('click', function () {
+		showCharacters(
+			data.results,
+			mainCharactersList,
+			mainCharactersDetails,
+			'All'
+		);
+	});
 })();

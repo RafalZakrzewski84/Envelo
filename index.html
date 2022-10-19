@@ -11,9 +11,10 @@
     <div id="app">
       <div id="header">
         <h1>Postacie</h1>
-        <p>wybierz postać by zobaczyć jej szczegóły</p>
+        <p>Wybierz postać by zobaczyć jej szczegóły</p>
         <p class="search">
-          Strona <input id="search-input" type="number" min="1" value="1" /> z <span id="search-input-span"></span></p>
+          <!-- adding start value, minimal and maximum -->
+          Strona <input id="search-input" type="number" min="1" max="42" value="1" /> z <span id="search-input-span"></span></p>
           <button id="headerAllBtn">Wszystkie</button>
           <button id="headerAliveBtn">Tylko żyjące</button>
           <button id="headerDeadBtn">Tylko martwe</button>
@@ -22,7 +23,6 @@
       
         <div class="main">
           <section id="main-chracters-list" class="main-chracters-list">
-            <h2>Character List:</h2>
             <!-- tutaj wyświetli się lista -->
           </section>
           <section id="main-chracters-details" class="main-chracters-details">
