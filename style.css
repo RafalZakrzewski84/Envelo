@@ -12,8 +12,10 @@ h2 {
 
 .main-chracters-list {
 	background-color: lightgray;
+	padding: 10px;
 }
 
 .main-chracters-details {
 	background-color: beige;
+	padding: 10px;
 }
