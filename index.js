@@ -25,8 +25,7 @@ Rozwiązanie prześlij wykorzystując również platformę Stackblitz, link do T
 rozwiązania w zupełności wystarczy!
 */
 
-//move it to index.html to title tag
-document.title = 'prework';
+//document.title = 'prework' moved to index.html to title tag
 
 //I moved here all DOM variables delarations here
 const searchInput = document.getElementById('search-input');

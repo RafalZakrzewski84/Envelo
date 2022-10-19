@@ -21,16 +21,13 @@ p {
 	grid-template-columns: 50% 50%;
 }
 
-.main-characters-list {
+.main-characters-list,
+.main-characters-details {
 	padding: 10px;
 }
 
 .main-characters-list-row {
 	cursor: pointer;
-}
-
-.main-characters-details {
-	padding: 10px;
 }
 
 .main-characters-details-container {
@@ -39,11 +36,15 @@ p {
 }
 
 .main-characters-details-item {
-	max-width: 150px;
+	max-width: 200px;
 	padding: 10px;
 	margin-right: 20px;
 	margin-bottom: 20px;
 	box-shadow: 0px 0px 5px 1px rgba(66, 68, 90, 1);
+}
+
+.main-characters-details-item p {
+	margin-bottom: 5px;
 }
 
 .main-characters-details-item img {

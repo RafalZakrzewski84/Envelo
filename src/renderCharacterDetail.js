@@ -10,12 +10,9 @@ export default function (index, renderData, mainCharactersDetailsContainer) {
 	// remove renderData[index];
 	const detailContainer = createHtmlElement('div');
 	const detailItem = createHtmlElement('div');
-	const name = createHtmlElement('div', `Imię: ${renderData[index].name}`);
-	const gender = createHtmlElement('div', `Płeć: ${renderData[index].gender}`);
-	const status = createHtmlElement(
-		'div',
-		`Status: ${renderData[index].status}`
-	);
+	const name = createHtmlElement('p', `IMIĘ: ${renderData[index].name}`);
+	const gender = createHtmlElement('p', `PŁEĆ: ${renderData[index].gender}`);
+	const status = createHtmlElement('p', `STATUS: ${renderData[index].status}`);
 	const image = createImgElement(
 		'img',
 		renderData[index].image,
