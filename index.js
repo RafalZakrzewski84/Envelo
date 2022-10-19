@@ -3,6 +3,8 @@ import { apiurl } from './src/helpers/constants.js';
 import getCharacters from './src/helpers/getCharacters.js';
 import clearCharacterList from './src/helpers/clearCharacterList.js';
 
+import renderCharacterList from './src/renderCharacterList.js';
+
 /*
 Aplikacja ma za zadanie wyświetlić postacie z serialu Rick i Morty, pobrane z dedykowanego
 API (https://rickandmortyapi.com/documentation). Po kliknięciu w nazwę postaci powinny
@@ -28,6 +30,7 @@ rozwiązania w zupełności wystarczy!
 //move it to index.html to title tag
 document.title = 'prework';
 
+//I moved here all DOM variables delarations here
 const searchInput = document.getElementById('search-input');
 const searchInputSpan = document.getElementById('search-input-span');
 const mainCharactersList = document.getElementById('main-chracters-list');
@@ -36,7 +39,8 @@ const headerAllBtn = document.getElementById('headerAllBtn');
 const headerAliveBtn = document.getElementById('headerAliveBtn');
 const headerDeadBtn = document.getElementById('headerDeadBtn');
 
-//getCharacters function to separet file it contain unnessesary variable loading
+//getCharacters function to separet file
+//It contain unnessesary variable loading - removed
 
 (async () => {
 	//unnessesary variable loading - removed
@@ -51,85 +55,34 @@ const headerDeadBtn = document.getElementById('headerDeadBtn');
 		console.log(data.results);
 	});
 
-	function getOnlyAlives() {
+	function showAliveCharacters() {
 		clearCharacterList(mainCharactersList);
-
-		data.results.forEach((res, index) => {
-			if (res.status === 'Alive') {
-				data.results.splice(index, 1);
-			}
-		});
-		console.log(data.results);
-		//todo render filtered results!
+		//I used filter method
+		const aliveList = data.results.filter((res) => res.status === 'Alive');
+		renderCharacterList(aliveList, mainCharactersList, mainCharactersDetails);
 	}
 
-	function deadsOnly() {
+	function showDeadCharacters() {
 		clearCharacterList(mainCharactersList);
-
-		data.results.forEach((res, index) => {
-			if (res.status === 'Dead') {
-				data.results.splice(index, 1);
-			}
-		});
-		console.log(data.results);
-		//todo render filtered results!
+		//I used filter method
+		const deadList = data.results.filter((res) => res.status === 'Dead');
+		renderCharacterList(deadList, mainCharactersList, mainCharactersDetails);
 	}
 
-	function all2() {
+	function showAllCharacters() {
 		clearCharacterList(mainCharactersList);
-		// todo
+		renderCharacterList(
+			data.results,
+			mainCharactersList,
+			mainCharactersDetails
+		);
 	}
 
-	headerDeadBtn.addEventListener('click', getOnlyAlives);
-	headerAliveBtn.addEventListener('click', deadsOnly);
-	headerAllBtn.addEventListener('click', all2);
+	//wrong functions were assign to event listeners
+	headerDeadBtn.addEventListener('click', showDeadCharacters);
+	headerAliveBtn.addEventListener('click', showAliveCharacters);
+	headerAllBtn.addEventListener('click', showAllCharacters);
 
 	// adding results to DOM!
-	for (let index in data.results) {
-		const p = document.createElement('p');
-		const lp = document.createElement('span');
-
-		//fixing index was string insted of number
-		lp.innerText = `${+index + 1}`;
-		const text = document.createTextNode(' ' + data.results[index].name);
-		p.prepend(lp, text);
-
-		mainCharactersList.append(p);
-
-		p.addEventListener('click', () => {
-			data.results[index];
-			const n = document.createElement('div');
-			const gender = document.createElement('div');
-			const status = document.createElement('div');
-			const jpg = document.createElement('img');
-			jpg.width = '100';
-
-			n.innerText = 'imie: ' + data.results[index].name;
-			gender.innerText = 'płeć: ' + data.results[index].gender;
-			status.innerText = 'status: ' + data.results[index].status;
-			jpg.src = data.results[index].image;
-
-			mainCharactersDetails.append(n, gender, status, jpg);
-
-			jpg.onclick = () => {
-				const dialog = document.createElement('dialog');
-				document.body.append(dialog);
-
-				dialog.append(jpg);
-				jpg.width = 300;
-
-				dialog.showModal();
-
-				const close = document.createElement('button');
-
-				close.innerText = 'zamknij';
-
-				close.addEventListener('click', () => {
-					dialog.close();
-				});
-
-				dialog.append(close);
-			};
-		});
-	}
+	renderCharacterList(data.results, mainCharactersList, mainCharactersDetails);
 })();
