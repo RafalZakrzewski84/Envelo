@@ -1,6 +1,7 @@
 /** @format */
 
 import createHtmlElement from './helpers/createHtmlElement.js';
+import renderCharacterListInfo from './renderCharacterListInfo.js';
 import renderCharacterDetail from './renderCharacterDetail.js';
 
 export default function (
@@ -9,16 +10,7 @@ export default function (
 	mainCharactersDetails,
 	msg
 ) {
-	//creating elements
-	const listTitle = createHtmlElement('h2', `Lista ${msg} postaci:`);
-	const info = createHtmlElement(
-		'p',
-		'Kliknij postać by zobaczyć jej szczegóły'
-	);
-	//adding elements to DOM
-	mainCharactersList.append(listTitle);
-	mainCharactersList.append(info);
-
+	renderCharacterListInfo(mainCharactersList, msg);
 	for (let index in renderData) {
 		//creating elements
 		//fixing index + 1 was string instead of number

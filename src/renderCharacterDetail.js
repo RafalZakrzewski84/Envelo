@@ -1,5 +1,7 @@
 /** @format */
 
+//component used in renderCharacterList
+
 import createHtmlElement from './helpers/createHtmlElement.js';
 import createImgElement from './helpers/createImgElement.js';
 import renderDialog from './renderDialog.js';

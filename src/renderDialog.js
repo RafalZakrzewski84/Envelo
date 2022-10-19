@@ -1,5 +1,7 @@
 /** @format */
 
+//component used in renderCharacterDetail
+
 import createHtmlElement from './helpers/createHtmlElement.js';
 import createImgElement from './helpers/createImgElement.js';
 
