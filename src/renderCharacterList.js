@@ -1,7 +1,7 @@
 /** @format */
 
 import createHtmlElement from './helpers/createHtmlElement.js';
-import createImgElement from './helpers/createImgElement.js';
+import renderCharacterDetail from './renderCharacterDetail.js';
 
 export default function (
 	renderData,
@@ -33,50 +33,8 @@ export default function (
 		//add character to DOM
 		mainCharactersList.append(character);
 
-		character.addEventListener('click', () => {
-			// remove renderData[index];
-			const detailContainer = createHtmlElement('div');
-			const name = createHtmlElement('div', `Imie: ${renderData[index].name}`);
-			const gender = createHtmlElement(
-				'div',
-				`Płeć: ${renderData[index].gender}`
-			);
-			const status = createHtmlElement(
-				'div',
-				`Status: ${renderData[index].status}`
-			);
-			const image = createImgElement(
-				'img',
-				renderData[index].image,
-				renderData[index].name
-			);
-			// image.width = '100' -moved to css
-
-			detailContainer.classList.add('main-characters-details-container');
-			image.src = renderData[index].image;
-
-			detailContainer.append(name, gender, status, image);
-			mainCharactersDetails.append(detailContainer);
-
-			image.addEventListener('click', function () {
-				// creating elements and new image for dialog to prevent removing img in detail list
-				const dialog = createHtmlElement('dialog');
-				const dialogImg = createImgElement(
-					'img',
-					renderData[index].image,
-					renderData[index].name
-				);
-				const closeBtn = createHtmlElement('button', 'Zamknij');
-
-				dialog.append(dialogImg, closeBtn);
-				document.body.append(dialog);
-
-				dialog.showModal();
-
-				closeBtn.addEventListener('click', function () {
-					dialog.close();
-				});
-			});
+		character.addEventListener('click', function () {
+			renderCharacterDetail(index, renderData, mainCharactersDetails);
 		});
 	}
 }

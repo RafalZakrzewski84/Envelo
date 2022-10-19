@@ -5,6 +5,29 @@ h2 {
 	font-family: Lato;
 }
 
+button {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	padding: 5px 20px;
+	border: 1px solid #989eab;
+	border-radius: 5px;
+	background: #d9e1f4;
+	box-shadow: #ffffff 0px 0px 40px 0px;
+	color: #111111;
+	text-decoration: none;
+	font-weight: 400;
+}
+button:hover {
+	border: 1px solid #d9e1f4;
+	background: #ffffff;
+	color: #111111;
+	text-decoration: none;
+}
+button:active {
+	transform: scale(0.98);
+}
+
 .main {
 	display: grid;
 	grid-template-columns: 50% 50%;
@@ -31,4 +54,13 @@ h2 {
 .main-characters-details-container img {
 	width: 100px;
 	cursor: pointer;
+}
+
+dialog {
+	border: none;
+}
+
+dialog button {
+	display: block;
+	margin: 5px auto;
 }
