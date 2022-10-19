@@ -1,48 +1,63 @@
 /** @format */
 
+import createHtmlElement from './helpers/createHtmlElement.js';
+
 export default function (
 	renderData,
 	mainCharactersList,
 	mainCharactersDetails,
-	msg = 'wszystkich'
+	msg
 ) {
-	console.log('msg in render', msg);
-	const h2 = document.createElement('h2');
-	h2.innerText = `Lista ${msg} postaci:`;
-	mainCharactersList.append(h2);
+	//creating elements
+	const listTitle = createHtmlElement('h2', `Lista ${msg} postaci:`);
+	const info = createHtmlElement(
+		'p',
+		'Kliknij postać by zobaczyć jej szczegóły'
+	);
+	//adding elements to DOM
+	mainCharactersList.append(listTitle);
+	mainCharactersList.append(info);
 
 	for (let index in renderData) {
-		const p = document.createElement('p');
-		const lp = document.createElement('span');
+		//creating elements
+		//fixing index + 1 was string instead of number
+		const lp = createHtmlElement('span', `${+index + 1}`);
+		const character = createHtmlElement('p');
 
-		//fixing index was string insted of number
-		lp.innerText = `${+index + 1}`;
+		//setting attributes
 		const text = document.createTextNode(' ' + renderData[index].name);
-		p.prepend(lp, text);
+		character.prepend(lp, text);
+		character.classList.add('main-characters-list-row');
 
-		mainCharactersList.append(p);
+		//add character to DOM
+		mainCharactersList.append(character);
 
-		p.addEventListener('click', () => {
-			renderData[index];
-			const n = document.createElement('div');
-			const gender = document.createElement('div');
-			const status = document.createElement('div');
-			const jpg = document.createElement('img');
-			jpg.width = '100';
+		character.addEventListener('click', () => {
+			// remove renderData[index];
+			const detailContainer = createHtmlElement('div');
+			const name = createHtmlElement('div', `Imie: ${renderData[index].name}`);
+			const gender = createHtmlElement(
+				'div',
+				`Płeć: ${renderData[index].gender}`
+			);
+			const status = createHtmlElement(
+				'div',
+				`Status: ${renderData[index].status}`
+			);
+			const image = createHtmlElement('img');
+			// image.width = '100';
 
-			n.innerText = 'imie: ' + renderData[index].name;
-			gender.innerText = 'płeć: ' + renderData[index].gender;
-			status.innerText = 'status: ' + renderData[index].status;
-			jpg.src = renderData[index].image;
+			image.src = renderData[index].image;
 
-			mainCharactersDetails.append(n, gender, status, jpg);
+			detailContainer.append(name, gender, status, image);
+			mainCharactersDetails.append(detailContainer);
 
-			jpg.onclick = () => {
+			image.onclick = () => {
 				const dialog = document.createElement('dialog');
 				document.body.append(dialog);
 
-				dialog.append(jpg);
-				jpg.width = 300;
+				dialog.append(image);
+				image.width = 300;
 
 				dialog.showModal();
 

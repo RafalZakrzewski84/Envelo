@@ -31,8 +31,10 @@ document.title = 'prework';
 //I moved here all DOM variables delarations here
 const searchInput = document.getElementById('search-input');
 const searchInputSpan = document.getElementById('search-input-span');
-const mainCharactersList = document.getElementById('main-chracters-list');
-const mainCharactersDetails = document.getElementById('main-chracters-details');
+const mainCharactersList = document.getElementById('main-characters-list');
+const mainCharactersDetails = document.getElementById(
+	'main-characters-details'
+);
 const headerAllBtn = document.getElementById('headerAllBtn');
 const headerAliveBtn = document.getElementById('headerAliveBtn');
 const headerDeadBtn = document.getElementById('headerDeadBtn');

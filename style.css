@@ -10,12 +10,25 @@ h2 {
 	grid-template-columns: 50% 50%;
 }
 
-.main-chracters-list {
+.main-characters-list {
 	background-color: lightgray;
 	padding: 10px;
 }
 
-.main-chracters-details {
+.main-characters-list-row {
+	cursor: pointer;
+}
+
+.main-characters-details {
 	background-color: beige;
 	padding: 10px;
+}
+
+.main-characters-details-container {
+	margin-right: 5px;
+}
+
+.main-characters-details-container img {
+	width: 100px;
+	cursor: pointer;
 }
