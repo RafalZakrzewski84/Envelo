@@ -1,31 +1,23 @@
 /** @format */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	background-color: #efefef;
+	color: #616161;
+}
 
 h1,
-h2 {
-	font-family: Lato;
+h2,
+p {
+	margin-top: 0;
 }
 
-button {
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	padding: 5px 20px;
-	border: 1px solid #989eab;
-	border-radius: 5px;
-	background: #d9e1f4;
-	box-shadow: #ffffff 0px 0px 40px 0px;
-	color: #111111;
-	text-decoration: none;
-	font-weight: 400;
-}
-button:hover {
-	border: 1px solid #d9e1f4;
-	background: #ffffff;
-	color: #111111;
-	text-decoration: none;
-}
-button:active {
-	transform: scale(0.98);
+.header {
+	background-color: #efefef;
 }
 
 .main {
@@ -34,7 +26,7 @@ button:active {
 }
 
 .main-characters-list {
-	background-color: lightgray;
+	background-color: #efefef;
 	padding: 10px;
 }
 
@@ -43,12 +35,13 @@ button:active {
 }
 
 .main-characters-details {
-	background-color: beige;
+	background-color: #efefef;
 	padding: 10px;
 }
 
 .main-characters-details-container {
 	margin-right: 5px;
+	padding: 5px;
 }
 
 .main-characters-details-container img {
@@ -56,8 +49,27 @@ button:active {
 	cursor: pointer;
 }
 
-dialog {
+button {
+	display: inline-block;
+	text-align: center;
+	padding: 15px 30px;
 	border: none;
+	border-radius: 5px;
+	background: #ff3b3f;
+	color: white;
+	font-size: 16px;
+	font-weight: 700;
+}
+button:hover {
+	background: #c62d30;
+}
+button:active {
+	transform: scale(0.98);
+}
+
+dialog {
+	border: 1px solid #616161;
+	background-color: #efefef;
 }
 
 dialog button {
