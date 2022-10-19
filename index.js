@@ -13,6 +13,7 @@ import showCharacters from './src/helpers/showCharacters.js';
 //- Unnecessary variables loading - removed
 //- In inputs event listener ()=>{} changed to function(){} to use this
 //- showCharacters functions are rendering elements based on search conditions
+//- Filter data to render using array filter method instead of forEach
 //- I create HTML elements using functions createHtmlElement and createImgElement
 //- I fixed Lp value in the list index + 1 , there was string instead of number
 //- I removed  stand alone renderData[index], unnecessary in code;

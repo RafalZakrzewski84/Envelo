@@ -19,6 +19,7 @@ export default function (
 		msg = 'wszystkich';
 	} else {
 		//pass filtered data to render base on criteria
+		//using filter method instead of forEach
 		filteredList = dataToFilter.filter((res) => res.status === whatShow);
 		msg = whatShow === 'Alive' ? 'żyjących' : 'martwych';
 	}
