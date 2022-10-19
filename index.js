@@ -1,6 +1,7 @@
 /** @format */
-import { apiurl } from './src/constants.js';
-import getCharacters from './src/getCharacters.js';
+import { apiurl } from './src/helpers/constants.js';
+import getCharacters from './src/helpers/getCharacters.js';
+import clearCharacterList from './src/helpers/clearCharacterList.js';
 
 /*
 Aplikacja ma za zadanie wyświetlić postacie z serialu Rick i Morty, pobrane z dedykowanego
@@ -27,17 +28,22 @@ rozwiązania w zupełności wystarczy!
 //move it to index.html to title tag
 document.title = 'prework';
 
-const characters = document.querySelector('#main-chracters-list');
+const searchInput = document.getElementById('search-input');
+const searchInputSpan = document.getElementById('search-input-span');
+const mainCharactersList = document.getElementById('main-chracters-list');
+const mainCharactersDetails = document.getElementById('main-chracters-details');
+const headerAllBtn = document.getElementById('headerAllBtn');
+const headerAliveBtn = document.getElementById('headerAliveBtn');
+const headerDeadBtn = document.getElementById('headerDeadBtn');
 
-//getCharacters function to separet file it contain unessesary variable loading
+//getCharacters function to separet file it contain unnessesary variable loading
 
 (async () => {
-	var loading = true;
+	//unnessesary variable loading - removed
 	let data = await getCharacters(apiurl);
 	console.log(data.results);
 
-	const searchInput = document.querySelector('#search-input');
-	document.querySelector('#search-input-span').innerText = data.info.pages;
+	searchInputSpan.innerText = data.info.pages;
 
 	//was ()=>{} should be common fnc to use this
 	searchInput.addEventListener('change', async function () {
@@ -46,7 +52,7 @@ const characters = document.querySelector('#main-chracters-list');
 	});
 
 	function getOnlyAlives() {
-		characters.innerHTML = '';
+		clearCharacterList(mainCharactersList);
 
 		data.results.forEach((res, index) => {
 			if (res.status === 'Alive') {
@@ -58,7 +64,7 @@ const characters = document.querySelector('#main-chracters-list');
 	}
 
 	function deadsOnly() {
-		characters.innerHTML = '';
+		clearCharacterList(mainCharactersList);
 
 		data.results.forEach((res, index) => {
 			if (res.status === 'Dead') {
@@ -70,23 +76,25 @@ const characters = document.querySelector('#main-chracters-list');
 	}
 
 	function all2() {
+		clearCharacterList(mainCharactersList);
 		// todo
 	}
 
-	alive.addEventListener('click', getOnlyAlives);
-	dead.addEventListener('click', deadsOnly);
-	all.addEventListener('click', all2);
+	headerDeadBtn.addEventListener('click', getOnlyAlives);
+	headerAliveBtn.addEventListener('click', deadsOnly);
+	headerAllBtn.addEventListener('click', all2);
 
 	// adding results to DOM!
 	for (let index in data.results) {
 		const p = document.createElement('p');
 		const lp = document.createElement('span');
 
+		//fixing index was string insted of number
 		lp.innerText = `${+index + 1}`;
 		const text = document.createTextNode(' ' + data.results[index].name);
 		p.prepend(lp, text);
 
-		characters.append(p);
+		mainCharactersList.append(p);
 
 		p.addEventListener('click', () => {
 			data.results[index];
@@ -101,9 +109,7 @@ const characters = document.querySelector('#main-chracters-list');
 			status.innerText = 'status: ' + data.results[index].status;
 			jpg.src = data.results[index].image;
 
-			const details = document.querySelector('section:not(:first-child)');
-
-			details.append(n, gender, status, jpg);
+			mainCharactersDetails.append(n, gender, status, jpg);
 
 			jpg.onclick = () => {
 				const dialog = document.createElement('dialog');
