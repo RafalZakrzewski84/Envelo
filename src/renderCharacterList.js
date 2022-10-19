@@ -1,6 +1,7 @@
 /** @format */
 
 import createHtmlElement from './helpers/createHtmlElement.js';
+import createImgElement from './helpers/createImgElement.js';
 
 export default function (
 	renderData,
@@ -44,33 +45,38 @@ export default function (
 				'div',
 				`Status: ${renderData[index].status}`
 			);
-			const image = createHtmlElement('img');
-			// image.width = '100';
+			const image = createImgElement(
+				'img',
+				renderData[index].image,
+				renderData[index].name
+			);
+			// image.width = '100' -moved to css
 
+			detailContainer.classList.add('main-characters-details-container');
 			image.src = renderData[index].image;
 
 			detailContainer.append(name, gender, status, image);
 			mainCharactersDetails.append(detailContainer);
 
-			image.onclick = () => {
-				const dialog = document.createElement('dialog');
-				document.body.append(dialog);
+			image.addEventListener('click', function () {
+				// creating elements and new image for dialog to prevent removing img in detail list
+				const dialog = createHtmlElement('dialog');
+				const dialogImg = createImgElement(
+					'img',
+					renderData[index].image,
+					renderData[index].name
+				);
+				const closeBtn = createHtmlElement('button', 'Zamknij');
 
-				dialog.append(image);
-				image.width = 300;
+				dialog.append(dialogImg, closeBtn);
+				document.body.append(dialog);
 
 				dialog.showModal();
 
-				const close = document.createElement('button');
-
-				close.innerText = 'zamknij';
-
-				close.addEventListener('click', () => {
+				closeBtn.addEventListener('click', function () {
 					dialog.close();
 				});
-
-				dialog.append(close);
-			};
+			});
 		});
 	}
 }
