@@ -6,10 +6,11 @@ import createHtmlElement from './helpers/createHtmlElement.js';
 import createImgElement from './helpers/createImgElement.js';
 import renderDialog from './renderDialog.js';
 
-export default function (index, renderData, mainCharactersDetails) {
+export default function (index, renderData, mainCharactersDetailsContainer) {
 	// remove renderData[index];
 	const detailContainer = createHtmlElement('div');
-	const name = createHtmlElement('div', `Imie: ${renderData[index].name}`);
+	const detailItem = createHtmlElement('div');
+	const name = createHtmlElement('div', `Imię: ${renderData[index].name}`);
 	const gender = createHtmlElement('div', `Płeć: ${renderData[index].gender}`);
 	const status = createHtmlElement(
 		'div',
@@ -22,9 +23,11 @@ export default function (index, renderData, mainCharactersDetails) {
 	);
 
 	detailContainer.classList.add('main-characters-details-container');
+	detailItem.classList.add('main-characters-details-item');
 
-	detailContainer.append(name, gender, status, image);
-	mainCharactersDetails.append(detailContainer);
+	detailItem.append(name, gender, status, image);
+	detailContainer.append(detailItem);
+	mainCharactersDetailsContainer.append(detailContainer);
 
 	image.addEventListener('click', function () {
 		renderDialog(index, renderData);

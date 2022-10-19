@@ -5,7 +5,7 @@ import renderCharacterList from '../renderCharacterList.js';
 export default function (
 	dataToFilter,
 	mainCharactersList,
-	mainCharactersDetails,
+	mainCharactersDetailsContainer,
 	whatShow
 ) {
 	clearCharacterList(mainCharactersList);
@@ -25,7 +25,7 @@ export default function (
 	renderCharacterList(
 		filteredList,
 		mainCharactersList,
-		mainCharactersDetails,
+		mainCharactersDetailsContainer,
 		msg
 	);
 }

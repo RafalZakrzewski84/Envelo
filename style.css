@@ -16,17 +16,12 @@ p {
 	margin-top: 0;
 }
 
-.header {
-	background-color: #efefef;
-}
-
 .main {
 	display: grid;
 	grid-template-columns: 50% 50%;
 }
 
 .main-characters-list {
-	background-color: #efefef;
 	padding: 10px;
 }
 
@@ -35,17 +30,24 @@ p {
 }
 
 .main-characters-details {
-	background-color: #efefef;
 	padding: 10px;
 }
 
 .main-characters-details-container {
-	margin-right: 5px;
-	padding: 5px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
-.main-characters-details-container img {
-	width: 100px;
+.main-characters-details-item {
+	max-width: 150px;
+	padding: 10px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0px 0px 5px 1px rgba(66, 68, 90, 1);
+}
+
+.main-characters-details-item img {
+	width: 100%;
 	cursor: pointer;
 }
 

@@ -32,8 +32,8 @@ document.title = 'prework';
 const searchInput = document.getElementById('search-input');
 const searchInputSpan = document.getElementById('search-input-span');
 const mainCharactersList = document.getElementById('main-characters-list');
-const mainCharactersDetails = document.getElementById(
-	'main-characters-details'
+const mainCharactersDetailsContainer = document.getElementById(
+	'main-characters-details-container'
 );
 const headerAllBtn = document.getElementById('headerAllBtn');
 const headerAliveBtn = document.getElementById('headerAliveBtn');
@@ -50,7 +50,7 @@ const headerDeadBtn = document.getElementById('headerDeadBtn');
 	showCharacters(
 		data.results,
 		mainCharactersList,
-		mainCharactersDetails,
+		mainCharactersDetailsContainer,
 		'All'
 	);
 	//adding info about max posible page
@@ -63,7 +63,7 @@ const headerDeadBtn = document.getElementById('headerDeadBtn');
 		showCharacters(
 			data.results,
 			mainCharactersList,
-			mainCharactersDetails,
+			mainCharactersDetailsContainer,
 			'All'
 		);
 	});
@@ -74,7 +74,7 @@ const headerDeadBtn = document.getElementById('headerDeadBtn');
 		showCharacters(
 			data.results,
 			mainCharactersList,
-			mainCharactersDetails,
+			mainCharactersDetailsContainer,
 			'Dead'
 		);
 	});
@@ -83,7 +83,7 @@ const headerDeadBtn = document.getElementById('headerDeadBtn');
 		showCharacters(
 			data.results,
 			mainCharactersList,
-			mainCharactersDetails,
+			mainCharactersDetailsContainer,
 			'Alive'
 		);
 	});
@@ -92,7 +92,7 @@ const headerDeadBtn = document.getElementById('headerDeadBtn');
 		showCharacters(
 			data.results,
 			mainCharactersList,
-			mainCharactersDetails,
+			mainCharactersDetailsContainer,
 			'All'
 		);
 	});

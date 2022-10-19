@@ -23,6 +23,7 @@ export default function (index, renderData) {
 
 	//event for closing dialog window
 	closeBtn.addEventListener('click', function () {
-		dialog.close();
+		//close change to remove
+		dialog.remove();
 	});
 }

@@ -1,5 +1,7 @@
 /** @format */
 
+//used in showCharacters
+
 import createHtmlElement from './helpers/createHtmlElement.js';
 import renderCharacterListInfo from './renderCharacterListInfo.js';
 import renderCharacterDetail from './renderCharacterDetail.js';
@@ -7,7 +9,7 @@ import renderCharacterDetail from './renderCharacterDetail.js';
 export default function (
 	renderData,
 	mainCharactersList,
-	mainCharactersDetails,
+	mainCharactersDetailsContainer,
 	msg
 ) {
 	renderCharacterListInfo(mainCharactersList, msg);
@@ -26,7 +28,7 @@ export default function (
 		mainCharactersList.append(character);
 
 		character.addEventListener('click', function () {
-			renderCharacterDetail(index, renderData, mainCharactersDetails);
+			renderCharacterDetail(index, renderData, mainCharactersDetailsContainer);
 		});
 	}
 }
