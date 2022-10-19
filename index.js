@@ -7,15 +7,17 @@ import showCharacters from './src/helpers/showCharacters.js';
 //- I added some styles in CSS
 //- In index.html I changed structure, added some classes and ids. I added container for character detail items.
 //- document.title = 'prework' moved to index.html to title tag.
-//- I moved variables taken fom DOM to the beginning of file, and get them by id.
-//- I moved getCharacters function to separate file and used it in 2 places.
+//- I moved variables taken fom DOM to the beginning of file, and got them by id.
+//- I moved getCharacters function to separate file and used it in lines 33 and 46.
 //- In getCharacters function I added try catch block for error handling
 //- Unnecessary variables loading - removed
-//- In inputs event listener was ()=>{} changed to function(){} for using this
-//- showCharacters functions are rendering elements base on search conditions
+//- In inputs event listener ()=>{} changed to function(){} to use this
+//- showCharacters functions are rendering elements based on search conditions
 //- I create HTML elements using functions createHtmlElement and createImgElement
-//- I fixed Lp value in list index + 1 was string instead of number
+//- I fixed Lp value in the list index + 1 , there was string instead of number
 //- I removed  stand alone renderData[index], unnecessary in code;
+//- In dialog I'm creating new image to prevent disappearing img in character detail item
+//- I changed dialog.close() to  remove() - for cleaning DOM from unnecessary elements
 
 const searchInput = document.getElementById('search-input');
 const searchInputSpan = document.getElementById('search-input-span');
@@ -37,7 +39,7 @@ const headerDeadBtn = document.getElementById('headerDeadBtn');
 		mainCharactersDetailsContainer,
 		'All'
 	);
-	//adding info about max possible page
+	//adding info about max possible page number
 	searchInputSpan.innerText = data.info.pages;
 
 	searchInput.addEventListener('change', async function () {
